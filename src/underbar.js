@@ -83,18 +83,63 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    let result = [];
+
+    for (let i = 0; i < collection.length; i++) {
+      if (test(collection[i])) {
+        result.push(collection[i]);
+      }
+    }
+
+    return result;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    let result = [];
+
+    for (let i = 0; i < collection.length; i++) {
+      if (!test(collection[i])) {
+        result.push(collection[i]);
+      }
+    }
+
+    return result;
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    if (isSorted && iterator !== undefined) {
+      let newObject = {};
+      for (let i = 0; i < array.length; i++) {
+        if (newObject[iterator(array[i])] === undefined) {
+          newObject[iterator(array[i])] = array[i];
+        }
+      }
+      return Object.values(newObject);
+    } else {
+      let result = array.slice();
+      for (let i = 0; i < result.length; i++) {
+        for (let j = i + 1; j < result.length; j++) {
+          if (result[i] === result[j]) {
+            result.splice(j, 1);
+          }
+        }
+      }
+      return result;
+    }
+    // if (isSorted !== undefined && iterator !== undefined) {
+    //   let newResult = [];
+    //   for (let k = 0; k < result.length; k++) {
+    //     if (iterator(result[k]) === isSorted) {
+    //       newResult.push(result[k]);
+    //     }
+    //   }
+    //   return newResult;
+    // }
   };
-
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
