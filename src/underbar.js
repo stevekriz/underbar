@@ -217,14 +217,20 @@
 
 
   // Determine whether all of the elements match a truth test.
-  _.every = function(collection, iterator) {
+  _.every = function(collection, iterator = _.identity) {
     // TIP: Try re-using reduce() here.
+    return _.reduce(collection, function(accumulator, item) {
+      return accumulator && !!iterator(item);
+    }, true);
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
-  _.some = function(collection, iterator) {
+  _.some = function(collection, iterator = _.identity) {
     // TIP: There's a very clever way to re-use every() here.
+    return !_.every(collection, function(item) {
+      return !iterator(item);
+    });
   };
 
 
@@ -247,11 +253,23 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    _.each(arguments, function(objArgs) {
+      _.each(objArgs, function (value, key) {
+        obj[key] = value;
+      });
+    });
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(arguments, function(objArgs) {
+      _.each(objArgs, function(value, key) {
+        obj[key] === undefined && (obj[key] = value);
+      });
+    });
+    return obj;
   };
 
 
@@ -295,6 +313,14 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var storage = {};
+    return function() {
+      var args = JSON.stringify(arguments);
+      if (!storage[args]) {
+        storage[args] = func.apply(this, arguments);
+      }
+      return storage[args];
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -304,6 +330,7 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    return setTimeout(func, wait, ...Array.prototype.slice.call(arguments).slice(2));
   };
 
 
@@ -318,6 +345,14 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var results = [];
+    var copy = array.slice();
+    for (var i = 0; i < array.length; i++) {
+      var random = Math.floor(Math.random() * copy.length);
+      results.push(copy[random]);
+      copy.splice(random, 1);
+    }
+    return results;
   };
 
 
