@@ -18,10 +18,5 @@
   "bugs": {
     "url": "https://github.com/stevekriz/underbar-review/issues"
   },
-  "homepage": "https://github.com/stevekriz/underbar-review#readme",
-  "devDependencies": {
-    "eslint": "^7.21.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
-  }
+  "homepage": "https://github.com/stevekriz/underbar-review#readme"
 }
