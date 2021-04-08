@@ -1,22 +1,22 @@
 {
-  "name": "underbar-review",
+  "name": "underbar",
   "version": "1.0.0",
-  "description": "underbar-review",
-  "scripts": {
-    "start": "npx live-server"
-  },
-  "author": "Steve Kriz",
-  "license": "UNLICENSED",
-  "main": ".eslintrc.js",
+  "description": "Reimplemented Underscore.js JavaScript library.",
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
+  "scripts": {
+    "test": "open specRunner.html"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stevekriz/underbar-review.git"
+    "url": "git+https://github.com/stevekriz/underbar.git"
   },
+  "author": "Steve Kriz",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stevekriz/underbar-review/issues"
+    "url": "https://github.com/stevekriz/underbar/issues"
   },
-  "homepage": "https://github.com/stevekriz/underbar-review#readme"
+  "homepage": "https://github.com/stevekriz/underbar#readme"
 }
