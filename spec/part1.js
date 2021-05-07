@@ -75,7 +75,7 @@
 
     describe("each", () => {
       checkForNativeMethods(() => {
-        _.each([1, 2, 3, 4], (number) => {});
+        _.each([1, 2, 3, 4], number => {});
       });
 
       it("should not return anything", () => {
@@ -94,7 +94,7 @@
         const letters = ["a", "b", "c"];
         const iterations = [];
 
-        _.each(letters, (letter) => {
+        _.each(letters, letter => {
           iterations.push(letter);
         });
 
@@ -147,7 +147,7 @@
         const letters = { d: "dog", e: "elephant", f: "flotsam" };
         const iterations = [];
 
-        _.each(letters, (value) => {
+        _.each(letters, value => {
           iterations.push(value);
         });
 
@@ -340,7 +340,7 @@
 
     describe("map", () => {
       checkForNativeMethods(() => {
-        _.map([1, 2, 3, 4], (num) => num * 2);
+        _.map([1, 2, 3, 4], num => num * 2);
       });
 
       it("should not mutate the input array", () => {
@@ -360,7 +360,7 @@
 
       it("should produce a brand new array instead of modifying the input array", () => {
         const numbers = [1, 2, 3];
-        const mappedNumbers = _.map(numbers, (num) => num);
+        const mappedNumbers = _.map(numbers, num => num);
 
         expect(mappedNumbers).to.not.equal(numbers);
       });
@@ -478,7 +478,7 @@
       });
 
       it("should set memo to be the first item of the array if no memo is passed in", () => {
-        const result = _.reduce([1, 2, 3], (memo) => memo);
+        const result = _.reduce([1, 2, 3], memo => memo);
 
         expect(result).to.equal(1);
       });
