@@ -50,7 +50,7 @@
             { name: 'curly', age: 50 },
             { name: 'moe', age: 30 },
           ],
-          person => person.age
+          (person) => person.age
         );
       });
 
@@ -59,14 +59,14 @@
           { name: 'curly', age: 50 },
           { name: 'moe', age: 30 },
         ];
-        people = _.sortBy(people, person => person.age);
+        people = _.sortBy(people, (person) => person.age);
 
         expect(_.pluck(people, 'name')).to.eql(['moe', 'curly']);
       });
 
       it('should handle undefined values', () => {
         const list = [undefined, 4, 1, undefined, 3, 2];
-        const result = _.sortBy(list, i => i);
+        const result = _.sortBy(list, (i) => i);
 
         expect(result).to.eql([1, 2, 3, 4, undefined, undefined]);
       });
@@ -105,7 +105,7 @@
           new Pair(undefined, 6),
         ];
 
-        const actual = _.sortBy(collection, pair => pair.x);
+        const actual = _.sortBy(collection, (pair) => pair.x);
 
         expect(actual).to.eql(collection);
       });
